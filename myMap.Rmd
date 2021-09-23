@@ -1,0 +1,39 @@
+---
+title: "myMap"
+author: "Luying Feng"
+date: "23/09/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Music Venues in Liverpool
+
+This is a map of some music venues in Liverpool.
+The Cavern Club nightclub birth place of the Beatles is a nightclub at 10 Mathew Street, in Liverpool, England.
+```{r,echo=FALSE}
+library(leaflet)
+df<-data.frame(
+    lat=c(53.406508992429494,53.40890019298574,53.40658599093,53.401651784858934,
+          53.404249347042374,53.40285737171775,53.401465350851694),
+    lng=c(-2.988007359418222,-2.9769039354672056,-2.9873873103381627,
+          -2.9778398683541436,-2.976985148976621,-2.9814880608191805,-2.970168240770523))
+
+VenueSites<-c(
+    "<a href='https://www.cavernclub.com/'>Cavern Club</a>",
+    "<a href='http://www.o2academyliverpool.co.uk/'>O2 Academy Liverpool</a>",
+    "<a href='https://erics-live.co.uk/'>Eric's Liverpool</a>",
+    "<a href='https://artsclubliverpool.com/'>Arts Club</a>",
+    "<a href='http://www.grandcentralhall.com/'>Grand Central Hall Liverpool</a>",
+    "<a href='https://www.jacarandarecords.com/phaseone/'>PHASE ONE - Liverpool</a>",
+    "<a href='https://www.liverpoolphil.com/'>Royal Liverpool Philharmonic</a>"
+)
+
+df%>%leaflet()%>%addTiles()%>%
+    addMarkers(popup=VenueSites)
+
+
+```
+
